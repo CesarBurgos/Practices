@@ -1,18 +1,20 @@
 # Docker-hub --- Repo' de docker
 
-version: '3.9'
+#version: '3.9'
 
-service:
+services:
   oracle-db:
-    imagen: gvenzl/oracle-xe:21.3.0
+    image: gvenzl/oracle-xe:21.3.0
     container_name: oracle-db
     ports:
-      - "1521:1521" 
-      - "5500:5500"
+      - "1522:1521"   # Puerto  SQL*Net
+      - "5500:5500"   # Oracle EM Express (si esta habilitado)
     environment:
-      ORACLE_PASSWORD: oracle 
-      APP_USER: appuser
+      ORACLE_PASSWORD: oracle       # Password para SYS, SYSTEM, PDADMIN
+      APP_USER: appuser             # usuariio de aplicación
       APP_USER_PASSWORD: apppass
     volumes:
-      - oracle-data:
-  
+      - oracle-data:/opt/oracle/oradata # persistencia de los datos
+
+volumes:
+  oracle-data:
