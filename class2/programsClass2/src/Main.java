@@ -57,12 +57,17 @@ public class Main {
                         program3 = null;
                         break;
 
-                    /*case 4:
-                        div(num1, num2);
+                    case 4:
+                        bucles program4 = new bucles();
+                        program4.menuProgram4();
+                        program4 = null;
                         break;
 
                     case 5:
-                        break;*/
+                        listas program5 = new listas();
+                        program5.menuProgram5();
+                        program5 = null;
+                        break;
 
                     default:
                         System.out.println("Programa principal: bye...");

@@ -129,6 +129,7 @@ public class wrappers {
                 }
             }catch (Exception err) {
                 //System.out.println("error: " + err.getMessage());
+                System.out.println("\n Programa 2: bye...\n");
                 break;
             }
         }

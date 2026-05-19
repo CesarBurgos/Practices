@@ -1,49 +1,133 @@
+/*
+    Para programa 4:
+    Implementación de bucles
+ */
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class bucles {
+    // Para menu
+    private String input;
+    private int opc;
+    BufferedReader br;
+    private int num;
 
+    //Constructor
+    public bucles() {
+        this.br = new BufferedReader(new InputStreamReader(System.in));
+    }
 
-        // 1. for clásico — tabla de multiplicar
-        System.out.println("=== Tabla del 7 ===");
+    public void cicloFor(int numTabla){
+        // Tabla de multiplicar
+        System.out.println("=== Tabla del " + Integer.toString(numTabla) + " ===");
         for (int i = 1; i <= 10; i++) {
-            System.out.printf("7 x %2d = %3d%n", i, 7 * i);
+            System.out.printf(Integer.toString(numTabla) + " x %2d = %3d%n", i, numTabla * i);
         }
+    }
 
-        // 2. for-each — recorrer arreglo
-        String[] frutas = {"Manzana", "Plátano", "Mango", "Papaya"};
-        System.out.println("\n=== Frutas (for-each) ===");
-        for (String fruta : frutas) {
-            System.out.println("  → " + fruta);
+    public void cicloForEach(){
+        String[] escritorioTrabajo = {"Computadora", "Pantalla", "Teclado", "Escritorio"};
+        System.out.println("\n Mi lugar de trabajo tiene: ");
+        for (String elemento : escritorioTrabajo) {
+            System.out.println("  → " + elemento);
         }
+    }
 
-        // 3. while — cuenta regresiva
-        System.out.println("\n=== Cuenta regresiva (while) ===");
-        int contador = 5;
+    public void cicloWhile(int contador){
         while (contador > 0) {
             System.out.println(contador + "...");
             contador--;
         }
-        System.out.println("¡Despegue!");
+        System.out.println("¡Fin!");
+    }
 
-        // 4. do-while — menú hasta que sea válido
-        System.out.println("\n=== do-while (simula validación) ===");
+    public void cicloDoWhile(BufferedReader br) throws IOException {
         int intento = 0;
         int intentosMax = 3;
         do {
+            System.out.print(" Registra tu contraseña: ");
+            input = br.readLine();
             intento++;
             System.out.println("Intento #" + intento);
         } while (intento < intentosMax);
+    }
 
-        // 5. break y continue
-        System.out.println("\n=== break / continue (pares del 1-10) ===");
-        for (int n = 1; n <= 10; n++) {
-            if (n % 2 != 0) continue;   // salta impares
-            if (n == 8) break;           // detiene en 8
-            System.out.print(n + " ");
+    public void menuProgram4() throws IOException {
+        while (true) {
+            try {
+                System.out.println("\n\n Programa 4: Bucles. \n\n");
+
+                System.out.println(" 1) ciclo For: Tabla de multiplicar");
+                System.out.println(" 2) ciclo For-Each: Lista de cosas");
+                System.out.println(" 3) ciclo While: Contador");
+                System.out.println(" 4) ciclo Do-While: Simulando ingreso");
+
+                System.out.println(" Salir (Cualquier caracter) ");
+
+                System.out.print("\n Ingrese una opción a realizar: ");
+                input = br.readLine();
+                opc = Integer.parseInt(input);
+
+                if (opc < 1 || opc > 4) {
+                    break;
+                }
+
+                System.out.println("\n");
+
+                switch (opc) {
+                    case 1:
+                        while (true) {
+                            try {
+                                System.out.print(" Ingresa la tabla que deseas consultar: ");
+                                input = br.readLine();
+                                num = Integer.parseInt(input);
+                                break;
+                            } catch (NumberFormatException e) {
+                                System.out.println("\n Error, no ha ingresado un numero: " + e.toString() + "\n");
+                            } catch (Exception egrl) {
+                                System.out.println(egrl.toString());
+                            }
+                        }
+
+                        cicloFor(num);
+                        break;
+
+                    case 2:
+                        cicloForEach();
+                        break;
+
+                    case 3:
+                        while (true) {
+                            try {
+                                System.out.print(" Ingresa un numero: ");
+                                input = br.readLine();
+                                num = Integer.parseInt(input);
+                                break;
+                            } catch (NumberFormatException e) {
+                                System.out.println("\n Error, no ha ingresado un numero: " + e.toString() + "\n");
+                            } catch (Exception egrl) {
+                                System.out.println(egrl.toString());
+                            }
+                        }
+
+                        cicloWhile(num);
+                        break;
+
+                    case 4:
+                        cicloDoWhile(br);
+                        break;
+
+                    default:
+                        System.out.println("\n Programa 4: bye...\n");
+                        break;
+                }
+            } catch (Exception err) {
+                //System.out.println("error: " + err.getMessage());
+                System.out.println("\n Programa 4: bye...\n");
+                break;
+            }
         }
-
-        // 7. Suma con while — acumulador
-        System.out.println("\n=== Suma 1..100 ===");
-        int suma = 0, x = 1;
-        while (x <= 100) { suma += x++; }
-        System.out.println("Resultado: " + suma);
-
+    }
 }

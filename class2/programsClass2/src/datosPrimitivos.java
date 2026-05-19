@@ -102,6 +102,7 @@ public class datosPrimitivos {
                 }
             }catch (Exception err) {
                 //System.out.println("error: " + err.getMessage());
+                System.out.println("\n Programa 1: bye...\n");
                 break;
             }
         }

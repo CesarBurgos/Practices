@@ -140,6 +140,7 @@ public class condicionales {
                 }
             } catch (Exception err) {
                 //System.out.println("error: " + err.getMessage());
+                System.out.println("\n Programa 3: bye...\n");
                 break;
             }
         }
