@@ -1,0 +1,18 @@
+# Docker-hub --- Repo' de docker
+
+version: '3.9'
+
+service:
+  oracle-db:
+    imagen: gvenzl/oracle-xe:21.3.0
+    container_name: oracle-db
+    ports:
+      - "1521:1521" 
+      - "5500:5500"
+    environment:
+      ORACLE_PASSWORD: oracle 
+      APP_USER: appuser
+      APP_USER_PASSWORD: apppass
+    volumes:
+      - oracle-data:
+  
