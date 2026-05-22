@@ -17,14 +17,14 @@ public class ClienteController {
 
             return "{"
                     + "\"success\": " + APIConstants.OKSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.OKQUERY + "\","
+                    + "\"mensaje\": \"" + APIConstants.OKQUERY + "\","
                     + "\"error\": null,"
                     + "\"data\":" + data
                     + "}";
         } catch (Exception e) {
             return "{"
                     + "\"success\": " + APIConstants.ERRORSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.ERRORQUERY + "\","
+                    + "\"mensaje\": \"" + APIConstants.ERRORQUERY + "\","
                     + "\"error\": " + e.getMessage() + "\""
                     + "}";
         }
@@ -45,32 +45,34 @@ public class ClienteController {
 
             return "{"
                     + "\"success\": " + APIConstants.OKSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.OKFOUND + "\","
+                    + "\"mensaje\": \"" + APIConstants.OKFOUND + "\","
                     + "\"error\": null,"
                     + "\"data\":" + data
                     + "}";
         } catch (Exception e) {
             return "{"
                     + "\"success\": " + APIConstants.ERRORSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.ERRORQUERY + "\","
+                    + "\"mensaje\": \"" + APIConstants.ERRORQUERY + "\","
                     + "\"error\": " + e.getMessage() + "\""
                     + "}";
         }
     }
+
     public String crear(String body){
         try{
             ClienteRequestDTO dto = JSONUtil.jsonToClienteRequest(body);
+            System.out.println(dto);
             service.crear(dto);
 
             return "{"
                     + "\"success\": " + APIConstants.OKSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.OKCREATE + "\","
+                    + "\"mensaje\": \"" + APIConstants.OKCREATE + "\","
                     + "}";
 
         } catch (Exception e) {
             return "{"
                     + "\"success\": " + APIConstants.ERRORSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.ERRORGENERAL + "\","
+                    + "\"mensaje\": \"" + APIConstants.ERRORGENERAL + "\","
                     + "\"error\": " + e.getMessage() + "\""
                     + "}";
         }
@@ -89,7 +91,7 @@ public class ClienteController {
         } catch (Exception e) {
             return "{"
                     + "\"success\": " + APIConstants.ERRORSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.ERRORGENERAL + "\","
+                    + "\"mensaje\": \"" + APIConstants.ERRORGENERAL + "\","
                     + "\"error\": " + e.getMessage() + "\""
                     + "}";
         }
@@ -106,7 +108,7 @@ public class ClienteController {
         }catch (Exception e) {
             return "{"
                     + "\"success\": " + APIConstants.ERRORSUCCESS + ","
-                    + "\"mensaje\": " + APIConstants.ERRORGENERAL + "\","
+                    + "\"mensaje\": \"" + APIConstants.ERRORGENERAL + "\","
                     + "\"error\": " + e.getMessage() + "\""
                     + "}";
         }
