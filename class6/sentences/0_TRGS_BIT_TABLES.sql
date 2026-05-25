@@ -1,0 +1,669 @@
+-- ====================
+-- Tabla Auditoria: PAIS
+-- ====================
+
+alter session set current_schema = SECURITY;
+
+-- ====================
+-- Funcion de obtener IP
+-- ====================
+
+CREATE  OR REPLACE FUNCTION FN_GET_IP
+    RETURN VARCHAR2
+    IS
+BEGIN
+    -- Intento de obtener IP del host que hace conexión
+    RETURN NVL(SYS_CONTEXT('USERENV', 'IP_ADDRESS'), SYS_CONTEXT('USERENV', 'HOST'));
+EXCEPTION
+    WHEN OTHERS THEN
+        RETURN 'LOCALHOST';
+END FN_GET_IP;
+
+-- ====================
+-- Funcion de obtener FECHA Y HORA
+-- ====================
+CREATE OR REPLACE FUNCTION FN_GET_FECHA
+    RETURN TIMESTAMP
+    IS
+BEGIN
+    RETURN SYSTIMESTAMP;
+EXCEPTION
+    WHEN OTHERS THEN
+        RETURN NULL;
+END FN_GET_FECHA;
+/
+
+
+
+
+--- *********************************************************************** Tabla BIT: PAIS
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE PAIS_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE PAIS_BIT(
+     ID_PAIS_BIT VARCHAR2(36) NOT NULL,
+     UUID_PAIS VARCHAR2(36) NOT NULL,
+     CODIGO VARCHAR(5),
+     DESCRIPTION VARCHAR(255),
+     ESTADO NUMBER(2) NOT NULL,
+     FECHA_CREACION TIMESTAMP DEFAULT SYSTIMESTAMP NOT NULL,
+     CREADO_POR VARCHAR(36) NOT NULL,
+     FECHA_ACTUALIZACION TIMESTAMP,
+     ACTUALIZADO_POR VARCHAR2(36),
+     NOTAS VARCHAR2(100),
+     CONSTRAINT pk_id_pais_bit_pais_bit PRIMARY KEY (ID_PAIS_BIT)
+);
+
+COMMENT ON TABLE PAIS_BIT IS 'Tabla que de Bitacora que contiene la información del PAIS';
+COMMENT ON COLUMN PAIS_BIT.ID_PAIS_BIT IS 'ID_BIT de tabla PAIS';
+COMMENT ON COLUMN PAIS_BIT.UUID_PAIS IS 'Identificador único UUID';
+COMMENT ON COLUMN PAIS_BIT.CODIGO IS 'Código del país';
+COMMENT ON COLUMN PAIS_BIT.DESCRIPTION IS 'Nombre o descripción del país';
+COMMENT ON COLUMN PAIS_BIT.ESTADO IS '0 = Inactivo | 99 = Activo';
+COMMENT ON COLUMN PAIS_BIT.FECHA_CREACION IS 'Fecha de creación';
+COMMENT ON COLUMN PAIS_BIT.CREADO_POR IS 'Usuario creador';
+COMMENT ON COLUMN PAIS_BIT.FECHA_ACTUALIZACION IS 'Fecha de actualización';
+COMMENT ON COLUMN PAIS_BIT.ACTUALIZADO_POR IS 'Usuario que actualizó';
+COMMENT ON COLUMN PAIS_BIT.NOTAS IS 'Observaciones adicionales';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria PAIS
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_PAIS_AUD
+    AFTER INSERT OR UPDATE ON CAT_PAIS
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO PAIS_BIT (
+        ID_PAIS_BIT,
+        UUID_PAIS,
+        CODIGO,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.UUID_PAIS,
+               :NEW.CODIGO,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+--- INSERT INTO CAT_PAIS (UUID_PAIS, CODIGO, DESCRIPTION, ESTADO,  CREADO_POR, FECHA_ACTUALIZACION, ACTUALIZADO_POR, NOTAS)
+--- VALUES ('EXAMPLE1-62c4-4b6a-b432-f614a8624d36', 'EXJ', 'EJEMPLO1', 0,  '57e8cc9c-9d83-4e76-99c1-d6de3d7a984e', null, null, null);
+--- COMMIT;
+
+SELECT * FROM PAIS_BIT;
+
+
+
+
+
+--- *********************************************************************** Tabla BIT: ESTADO
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE ESTADO_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE ESTADO_BIT(
+         ID_ESTADO_BIT VARCHAR2(36) NOT NULL,
+         UUID_ESTADO VARCHAR2(36) NOT NULL,
+         UUID_PAIS VARCHAR2(36) DEFAULT '34a03599-6d56-4c0c-aff0-f887ca20ea93',
+         DESCRIPTION VARCHAR2(35) NOT NULL,
+         ESTADO NUMBER(2) NOT NULL,
+         FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+         CREADO_POR VARCHAR2(36) NOT NULL,
+         FECHA_ACTUALIZACION TIMESTAMP,
+         ACTUALIZADO_POR VARCHAR2(36),
+         NOTAS VARCHAR2(100),
+         CONSTRAINT pk_id_estado_bit_estado_bit PRIMARY KEY (ID_ESTADO_BIT)
+);
+
+COMMENT ON TABLE ESTADO_BIT IS 'Tabla que de Bitacora que contiene la información del ESTADO';
+COMMENT ON COLUMN ESTADO_BIT.ID_ESTADO_BIT IS 'ID_ESTADO_BIT de tabla ESTADO';
+COMMENT ON COLUMN ESTADO_BIT.UUID_ESTADO IS 'Identificador único UUID del estado';
+COMMENT ON COLUMN ESTADO_BIT.UUID_PAIS IS 'Referencia al país';
+COMMENT ON COLUMN ESTADO_BIT.DESCRIPTION IS 'Nombre del estado';
+COMMENT ON COLUMN ESTADO_BIT.ESTADO IS '0 = Inactivo | 99 = Activo';
+COMMENT ON COLUMN ESTADO_BIT.FECHA_CREACION IS 'Fecha de creación';
+COMMENT ON COLUMN ESTADO_BIT.CREADO_POR IS 'Usuario creador';
+COMMENT ON COLUMN ESTADO_BIT.FECHA_ACTUALIZACION IS 'Fecha de actualización';
+COMMENT ON COLUMN ESTADO_BIT.ACTUALIZADO_POR IS 'Usuario actualizador';
+COMMENT ON COLUMN ESTADO_BIT.NOTAS IS 'Observaciones';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria PAIS
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_ESTADO_AUD
+    AFTER INSERT OR UPDATE ON CAT_ESTADO
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO ESTADO_BIT (
+        ID_ESTADO_BIT,
+        UUID_ESTADO,
+        UUID_PAIS,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.UUID_ESTADO,
+               :NEW.UUID_PAIS,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+-- INSERT INTO CAT_ESTADO (UUID_ESTADO, DESCRIPTION, ESTADO,  CREADO_POR, FECHA_ACTUALIZACION, ACTUALIZADO_POR, NOTAS)
+-- VALUES ('EXAMPLE2-62c4-4b6a-b432-f614a8624d36', 'EJEMPLO_ESTADO2', 0,  '57e8cc9c-9d83-4e76-99c1-d6de3d7a984e', null, null, null);
+-- COMMIT;
+
+SELECT * FROM ESTADO_BIT;
+
+
+
+
+
+--- *********************************************************************** Tabla BIT: CIUDAD
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE CIUDAD_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE CIUDAD_BIT(
+       ID_CIUDAD_BIT VARCHAR2(36) NOT NULL,
+       UUID_CIUDAD VARCHAR2(36) NOT NULL,
+       UUID_ESTADO VARCHAR2(36) NOT NULL,
+       DESCRIPTION VARCHAR2(50) NOT NULL,
+       ESTADO NUMBER(2) NOT NULL,
+       FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+       CREADO_POR VARCHAR2(36) NOT NULL,
+       FECHA_ACTUALIZACION TIMESTAMP,
+       ACTUALIZADO_POR VARCHAR2(36),
+       NOTAS VARCHAR2(100),
+       CONSTRAINT pk_id_ciudad_bit_ciudad_bit PRIMARY KEY (ID_CIUDAD_BIT)
+);
+
+COMMENT ON TABLE CIUDAD_BIT IS 'Tabla que de Bitacora que contiene la información de la CIUDAD';
+COMMENT ON COLUMN CIUDAD_BIT.ID_CIUDAD_BIT IS 'ID_CIUDAD_BIT de tabla CIUDAD';
+COMMENT ON COLUMN CIUDAD_BIT.UUID_CIUDAD IS 'Identificador único UUID de la ciudad';
+COMMENT ON COLUMN CIUDAD_BIT.UUID_ESTADO IS 'Referencia al estado';
+COMMENT ON COLUMN CIUDAD_BIT.DESCRIPTION IS 'Nombre de la ciudad';
+COMMENT ON COLUMN CIUDAD_BIT.ESTADO IS '0 = Inactivo, 99 = Activo';
+COMMENT ON COLUMN CIUDAD_BIT.FECHA_CREACION IS 'Fecha de creación';
+COMMENT ON COLUMN CIUDAD_BIT.CREADO_POR IS 'Usuario creador';
+COMMENT ON COLUMN CIUDAD_BIT.FECHA_ACTUALIZACION IS 'Fecha de actualización';
+COMMENT ON COLUMN CIUDAD_BIT.ACTUALIZADO_POR IS 'Usuario que actualizó';
+COMMENT ON COLUMN CIUDAD_BIT.NOTAS IS 'Observaciones adicionales';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria CIUDAD
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_CIUDAD_AUD
+    AFTER INSERT OR UPDATE ON CAT_CIUDAD
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO CIUDAD_BIT (
+        ID_CIUDAD_BIT,
+        UUID_CIUDAD,
+        UUID_ESTADO,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.UUID_CIUDAD,
+               :NEW.UUID_ESTADO,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+-- INSERT INTO CAT_CIUDAD (UUID_CIUDAD, UUID_ESTADO, DESCRIPTION, ESTADO,  CREADO_POR, FECHA_ACTUALIZACION, ACTUALIZADO_POR, NOTAS)
+-- VALUES ('EXAMPLE1-62c4-4b6a-b432-f614a8624d36', '79b7598b-fe1e-4921-87ed-70af359a41ab', 'EJEMPLO CIUDAD', 0,  '57e8cc9c-9d83-4e76-99c1-d6de3d7a984e', null, null, null);
+-- COMMIT;
+
+SELECT * FROM CIUDAD_BIT;
+
+
+
+
+
+--- *********************************************************************** Tabla BIT: FACTURA
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE ESTADO_FACTURA_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE ESTADO_FACTURA_BIT(
+       ID_ESTADO_FACTURA_BIT VARCHAR2(36) NOT NULL,
+       ID_ESTADO_FACTURA VARCHAR2(15) NOT NULL,
+       NOMBRE VARCHAR2(50) NOT NULL,
+       DESCRIPTION VARCHAR2(100),
+       ESTADO NUMBER(2) DEFAULT 0 NOT NULL,
+       FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+       CREADO_POR VARCHAR2(36) NOT NULL,
+       FECHA_ACTUALIZACION TIMESTAMP,
+       ACTUALIZADO_POR VARCHAR2(36),
+       NOTAS VARCHAR2(100),
+       CONSTRAINT pk_id_state_facture_bit_state_facture_bit PRIMARY KEY (ID_ESTADO_FACTURA_BIT)
+);
+
+COMMENT ON TABLE ESTADO_FACTURA_BIT IS 'Tabla que de Bitacora que contiene la información del ESTADO DE LA FACTURA';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.ID_ESTADO_FACTURA_BIT IS 'ID_ESTADO_FACTURA_BIT de tabla FACTURAS';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.ID_ESTADO_FACTURA IS 'Clave del estado de la factura';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.NOMBRE IS 'Nombre del estado de la factura';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.DESCRIPTION IS 'Descripción del estado de la factura';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.ESTADO IS '0 = Activo | 99 = Inactivo';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.FECHA_CREACION is 'Fecha de creación';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.CREADO_POR is 'Usuario creador';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.FECHA_ACTUALIZACION is 'Fecha de actualización';
+COMMENT ON COLUMN ESTADO_FACTURA_BIT.ACTUALIZADO_POR is 'Usuario que actualizó';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria FACTURAS
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_FACTURA_AUD
+    AFTER INSERT OR UPDATE ON CAT_ESTADO_FACTURA
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO ESTADO_FACTURA_BIT (
+        ID_ESTADO_FACTURA_BIT,
+        ID_ESTADO_FACTURA,
+        NOMBRE,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.ID_ESTADO_FACTURA,
+               :NEW.NOMBRE,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+--INSERT INTO CAT_ESTADO_FACTURA(NOMBRE, DESCRIPTION, CREADO_POR)
+--VALUES ('PAGADA-EX', 'Factura Pagada EJEMPLO', '57e8cc9c-9dB3-4e76-99c1-d6de3d7a984e');
+-- COMMIT;
+
+
+SELECT * FROM ESTADO_FACTURA_BIT;
+
+
+
+
+
+--- *********************************************************************** Tabla BIT: PAGOS
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE ESTADO_PAGOS_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE ESTADO_PAGOS_BIT(
+       ID_ESTADO_PAGOS_BIT VARCHAR2(36) NOT NULL,
+       ID_ESTADO_PAGO VARCHAR2(15) NOT NULL,
+       NOMBRE VARCHAR2(50) NOT NULL,
+       DESCRIPTION VARCHAR2(100),
+       ESTADO NUMBER(2) DEFAULT 0 NOT NULL,
+       FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+       CREADO_POR VARCHAR2(36) NOT NULL,
+       FECHA_ACTUALIZACION TIMESTAMP,
+       ACTUALIZADO_POR VARCHAR2(36),
+       NOTAS VARCHAR2(100),
+       CONSTRAINT pk_id_state_payments_bit_state_payments_bit PRIMARY KEY (ID_ESTADO_PAGOS_BIT)
+);
+
+COMMENT ON TABLE ESTADO_PAGOS_BIT IS 'Tabla que de Bitacora que contiene la información de ESTADOS DE PAGOS';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.ID_ESTADO_PAGOS_BIT IS 'ID_ESTADO_PAGOS_BIT de tabla PAGOS';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.ID_ESTADO_PAGO IS 'Clave del estado de la pago';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.NOMBRE IS 'Nombre del estado de la pago';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.DESCRIPTION IS 'Descripción del estado de la pago';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.ESTADO IS '0 = Activo | 99 = Inactivo';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.FECHA_CREACION is 'Fecha de creación';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.CREADO_POR is 'Usuario creador';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.FECHA_ACTUALIZACION is 'Fecha de actualización';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.ACTUALIZADO_POR is 'Usuario que actualizó';
+COMMENT ON COLUMN ESTADO_PAGOS_BIT.NOTAS is 'Observaciones adicionales';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria PAGOS
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_PAGOS_AUD
+    AFTER INSERT OR UPDATE ON CAT_ESTADO_PAGO
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO ESTADO_PAGOS_BIT (
+        ID_ESTADO_PAGOS_BIT,
+        ID_ESTADO_PAGO,
+        NOMBRE,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.ID_ESTADO_PAGO,
+               :NEW.NOMBRE,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+--- INSERT INTO CAT_ESTADO_PAGO(NOMBRE, DESCRIPTION, CREADO_POR)
+--- VALUES ('PROCESADO-EXMPL', 'pago PROCESADO CON EXITO EJEMPLO', '57e8cc9c-9dB3-4e76-99c1-d6de3d7a984e');
+--- COMMIT;
+
+SELECT * FROM ESTADO_PAGOS_BIT;
+
+
+
+
+
+--- *********************************************************************** Tabla BIT: ROL
+BEGIN
+    EXECUTE IMMEDIATE  'DROP TABLE ROLES_BIT CASCADE CONSTRAINTS';
+EXCEPTION WHEN OTHERS THEN NULL;
+END;
+/
+
+---- Creando Tabla BIT
+CREATE TABLE ROLES_BIT(
+       ID_ROLES_BIT VARCHAR2(36) NOT NULL,
+       ID_ROL VARCHAR2(10) NOT NULL,
+       NOMBRE_ROL VARCHAR2(50) NOT NULL,
+       DESCRIPTION VARCHAR2(100),
+       ESTADO NUMBER(2) DEFAULT 0 NOT NULL,
+       FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+       CREADO_POR VARCHAR2(36) NOT NULL,
+       FECHA_ACTUALIZACION TIMESTAMP,
+       ACTUALIZADO_POR VARCHAR2(36),
+       NOTAS VARCHAR2(100),
+       CONSTRAINT pk_id_roles_bit_roles_bit PRIMARY KEY (ID_ROLES_BIT)
+);
+
+COMMENT ON TABLE ROLES_BIT IS 'Tabla que de Bitacora que contiene la información de los ROLES';
+COMMENT ON COLUMN ROLES_BIT.ID_ROLES_BIT IS 'ID_ROLES_BIT de tabla ROLES';
+COMMENT ON COLUMN ROLES_BIT.ID_ROL IS 'Clave del ROL ejemplo RL-001';
+COMMENT ON COLUMN ROLES_BIT.NOMBRE_ROL IS 'Nombre del ROL';
+COMMENT ON COLUMN ROLES_BIT.DESCRIPTION IS 'Descripción del ROL';
+COMMENT ON COLUMN ROLES_BIT.ESTADO IS '0 = Activo | 99 = Inactivo';
+COMMENT ON COLUMN ROLES_BIT.FECHA_CREACION is 'Fecha de creación';
+COMMENT ON COLUMN ROLES_BIT.CREADO_POR is 'Usuario creador';
+COMMENT ON COLUMN ROLES_BIT.FECHA_ACTUALIZACION is 'Fecha de actualización';
+COMMENT ON COLUMN ROLES_BIT.ACTUALIZADO_POR is 'Usuario que actualizó';
+COMMENT ON COLUMN ROLES_BIT.NOTAS is 'Observaciones adicionales';
+
+COMMIT;
+
+-- ====================
+-- Trigger Auditoria ROLES
+-- ====================
+
+CREATE OR REPLACE TRIGGER TRG_ROLES_AUD
+    AFTER INSERT OR UPDATE ON CAT_ROL
+    FOR EACH ROW
+DECLARE
+    V_ACCION VARCHAR2(20);
+    V_FECHA_CREACION DATE := NULL;
+    V_FECHA_MODIFICACION DATE := NULL;
+BEGIN
+
+    -- INSERT
+    IF INSERTING THEN
+        V_ACCION := 'INSERT';
+        V_FECHA_CREACION := SYSDATE;
+
+        -- UPDATE
+    ELSIF UPDATING THEN
+        V_FECHA_MODIFICACION := SYSDATE;
+        V_FECHA_CREACION := :OLD.FECHA_CREACION;
+
+        -- Detectar borrado logico
+        IF :OLD.ESTADO = 1 AND :NEW.ESTADO = 0 THEN
+            V_ACCION := 'ACTIVATE';
+        ELSIF :OLD.ESTADO = 0 AND :NEW.ESTADO = 1 THEN
+            V_ACCION := 'DEACTIVATE';
+        ELSE
+            V_ACCION := 'UPDATE';
+        END IF;
+    END IF;
+
+    INSERT INTO ROLES_BIT (
+        ID_ROLES_BIT,
+        ID_ROL,
+        NOMBRE_ROL,
+        DESCRIPTION,
+        ESTADO,
+        FECHA_CREACION,
+        CREADO_POR,
+        FECHA_ACTUALIZACION,
+        ACTUALIZADO_POR,
+        NOTAS
+    )
+    VALUES (
+               SYS_GUID(),
+               :NEW.ID_ROL,
+               :NEW.NOMBRE_ROL,
+               :NEW.DESCRIPTION,
+               :NEW.ESTADO,
+               V_FECHA_CREACION,
+               :NEW.CREADO_POR,
+               V_FECHA_MODIFICACION,
+               FN_GET_IP,
+               V_ACCION
+           );
+END;
+/
+
+--- INSERT INTO CAT_ROL(NOMBRE_ROL, DESCRIPTION, CREADO_POR)
+--- VALUES ('USER_TESTER', 'Usuario estandar PRUEBA', '57e8cc9c-9dB3-4e76-99c1-d6de3d7a984e');
+--- COMMIT;
+
+SELECT * FROM ROLES_BIT;
