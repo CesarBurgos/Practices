@@ -90,7 +90,7 @@ public class ClienteRepository {
 
             String sql = """
                     SELECT
-                     ID_CLIENTE, NOMBRE, APATERNO, AMATERNO, FECHA_ALTA, ACTIVO
+                     ID_CLIENTE, NOMBRE, APATERNO, AMATERNO, FECHA_ALTA, ESTADO
                     FROM CLIENTES
                     WHERE ID_CLIENTE = ?
                     AND ESTADO = 1

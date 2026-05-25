@@ -42,7 +42,7 @@ BEGIN
                    'NOMBRE=' || :NEW.NOMBRE ||
                    ', APATERNO=' || :NEW.APATERNO ||
                    ', AMATERNO=' || :NEW.AMATERNO ||
-                   ', ACTIVO=' || :NEW.ACTIVO ---- Concatenando el registro de los nuevos datos
+                   ', ACTIVO=' || :NEW.ACTIVO
                );
     END IF;
 
@@ -65,12 +65,12 @@ BEGIN
                    'NOMBRE=' || :OLD.NOMBRE ||
                    ', APATERNO=' || :OLD.APATERNO ||
                    ', AMATERNO=' || :OLD.AMATERNO ||
-                   ', ACTIVO=' || :OLD.ACTIVO, ---- Concatenando el registro de los viejos datos
+                   ', ACTIVO=' || :OLD.ACTIVO,
 
                    'NOMBRE=' || :NEW.NOMBRE ||
                    ', APATERNO=' || :NEW.APATERNO ||
                    ', AMATERNO=' || :NEW.AMATERNO ||
-                   ', ACTIVO=' || :NEW.ACTIVO ---- Concatenando el registro de los nuevos datos
+                   ', ACTIVO=' || :NEW.ACTIVO
                );
     END IF;
 
@@ -92,7 +92,7 @@ BEGIN
                    'NOMBRE=' || :OLD.NOMBRE ||
                    ', APATERNO=' || :OLD.APATERNO ||
                    ', AMATERNO=' || :OLD.AMATERNO ||
-                   ', ACTIVO=' || :OLD.ACTIVO ---- Concatenando el registro de los viejos datos
+                   ', ACTIVO=' || :OLD.ACTIVO
                );
 
     END IF;
