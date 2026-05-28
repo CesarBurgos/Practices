@@ -1,0 +1,20 @@
+package com.curso.projectweb.model;
+
+import java.util.Date;
+
+public class DatosFiscalesModel {
+    private String idDatosfic;
+    private String idCliente;
+    private String razonSocial;
+    private String rfc;
+    private String codigoPostal;
+    private String idTipoCliente;
+    private String usoCFDI;
+    private String email;
+    private String dEstado;
+    private String dCiudad;
+    private String dColonia;
+    private String dZona;
+    private Date createdAt;
+    private Integer status;
+}
