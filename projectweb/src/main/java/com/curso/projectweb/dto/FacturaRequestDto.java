@@ -7,9 +7,11 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 public class FacturaRequestDto {
     @NotBlank(message = "El idCliente es obligatorio")
     private String idCliente;

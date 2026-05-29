@@ -1,6 +1,7 @@
 package com.curso.projectweb.repository;
 
 import com.curso.projectweb.dto.PreRegisterRequestDto;
+import org.springframework.stereotype.Component;
 
 public interface IAuthRegisterRepository {
     public void savePersona(PreRegisterRequestDto request);

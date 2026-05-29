@@ -1,7 +1,9 @@
 package com.curso.projectweb.model;
 
+import lombok.Data;
 import java.util.Date;
 
+@Data
 public class DatosFiscalesModel {
     private String idDatosfic;
     private String idCliente;

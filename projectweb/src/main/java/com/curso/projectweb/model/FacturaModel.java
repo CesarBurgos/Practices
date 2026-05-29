@@ -1,8 +1,10 @@
 package com.curso.projectweb.model;
 
+import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 public class FacturaModel {
     private String idFactura;
     private String idCliente;
