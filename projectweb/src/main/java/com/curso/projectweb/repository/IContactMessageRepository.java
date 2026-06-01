@@ -4,15 +4,15 @@ import com.curso.projectweb.model.ContactMessageModel;
 import java.util.List;
 
 public interface IContactMessageRepository {
-    int save(ContactMessageModel message);
+    public int save(ContactMessageModel message);
 
-    int updateStatus(String messageId, String status, String userResponse);
+    public int updateStatus(String messageId, String status, String userResponse);
 
-    int logicalDelete(String messageId);
+    public int logicalDelete(String messageId);
 
-    List<ContactMessageModel> findAll();
+    public List<ContactMessageModel> findAll();
 
-    List<ContactMessageModel> findByStatus(String status);
+    public List<ContactMessageModel> findByStatus(String status);
 
-    ContactMessageModel findById(String messageId);
+    public ContactMessageModel findById(String messageId);
 }

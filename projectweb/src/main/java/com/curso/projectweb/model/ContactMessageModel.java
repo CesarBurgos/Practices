@@ -1,7 +1,9 @@
 package com.curso.projectweb.model;
 
+import lombok.Data;
 import java.util.Date;
 
+@Data
 public class ContactMessageModel {
     private String messageId;
     private String name;

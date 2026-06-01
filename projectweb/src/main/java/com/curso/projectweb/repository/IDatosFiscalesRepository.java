@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IDatosFiscalesRepository {
-    List<DatosFiscalesModel> findAll();
+    public List<DatosFiscalesModel> findAll();
 
-    Optional<DatosFiscalesModel> findById(String id);
+    public Optional<DatosFiscalesModel> findById(String id);
 
-    Optional<DatosFiscalesModel> findByRFC(String RFC);
+    public Optional<DatosFiscalesModel> findByRFC(String RFC);
 
-    DatosFiscalesModel save(DatosFiscalesModel datos);
+    public DatosFiscalesModel save(DatosFiscalesModel datos);
 
-    DatosFiscalesModel update(String id, DatosFiscalesModel datos);
+    public DatosFiscalesModel update(String id, DatosFiscalesModel datos);
 
-    void deleteLogical(String id);
+    public void deleteLogical(String id);
 
-    boolean existsCliente(String idCliente);
+    public boolean existsCliente(String idCliente);
 
-    boolean existsTipoCliente(String idTipoCliente);
+    public boolean existsTipoCliente(String idTipoCliente);
 }
