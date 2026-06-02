@@ -30,5 +30,4 @@ public class Util {
 
     public static Integer DEACTIVATECODE = 99;
     public static Integer ACTIVATECODE = 0;
-
 }
