@@ -45,7 +45,8 @@ public class SecurityConfig {
                                 Util.VERIFYENDPOINT,
                                 Util.ACTIVATEACCOUNTENDPOINT,
                                 Util.CATESTADOENDPOINT,
-                                Util.CATCIUDADENDPOINT).permitAll()
+                                Util.CATCIUDADENDPOINT,
+                                Util.CATPAISESENDPOINT).permitAll()
 
                         // Cualquier otra petición requiere autenticación
                         .anyRequest().authenticated()

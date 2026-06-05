@@ -74,7 +74,7 @@ public class CatalogoService implements ICatalogoService{
     }
 
     @Override
-    public List<CatalogoModel> ontenerCiudadesPorEstado(String uuidEstado){
+    public List<CatalogoModel> obtenerCiudadesPorEstado(String uuidEstado){
         return repository.obtenerCiudadesPorEstado(uuidEstado);
     }
 }

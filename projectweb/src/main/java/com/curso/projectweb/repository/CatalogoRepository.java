@@ -2,6 +2,7 @@ package com.curso.projectweb.repository;
 
 import com.curso.projectweb.model.CatalogoModel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class CatalogoRepository implements ICatalogoRepository{
+    @Autowired
     private JdbcTemplate JDBCTemplate;
 
     @Override

@@ -3,6 +3,7 @@ package com.curso.projectweb.repository;
 import com.curso.projectweb.model.ClienteModel;
 import com.curso.projectweb.repository.impl.ClienteRowMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
 public class ClienteRepository implements IClienteRepository{
-
     private final JdbcTemplate JDBCTemplate;
     private final ClienteRowMapper MAPPER = new ClienteRowMapper();
 

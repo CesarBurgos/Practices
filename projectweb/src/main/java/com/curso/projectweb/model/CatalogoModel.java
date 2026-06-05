@@ -2,6 +2,7 @@ package com.curso.projectweb.model;
 
 import lombok.Data;
 
+@Data
 public class CatalogoModel {
     private String id;
     private String description;

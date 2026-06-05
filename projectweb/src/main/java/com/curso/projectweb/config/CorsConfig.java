@@ -28,7 +28,10 @@ public class CorsConfig {
         // LISTA BLANCA
         // Define que origenes (dominios) pueden consumir nuestra API
         // En este caso solo permitimos Angular corriendo en localhosto:4200
-        configuration.setAllowedOrigins(Arrays.asList("http://app.curso"));
+        // Para usarse en una VirtualHost
+        //configuration.setAllowedOrigins(Arrays.asList("http://app.curso"));
+
+        configuration.setAllowedOrigins(Arrays.asList("*"));
 
         // Define los métodos HTTP permitidos
         // Solo estas operaciones podrán ejecutarse desde le frontend

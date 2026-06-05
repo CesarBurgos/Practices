@@ -27,6 +27,7 @@ public class Util {
     public static String ACTIVATEACCOUNTENDPOINT = "/api/v1/auth/activate-account";
     public static String CATESTADOENDPOINT = "/api/v1/catalogos/estados";
     public static String CATCIUDADENDPOINT = "/api/v1/catalogos/ciudades/**";
+    public static String CATPAISESENDPOINT = "/api/v1/catalogos/paises/**";
 
     public static Integer DEACTIVATECODE = 99;
     public static Integer ACTIVATECODE = 0;

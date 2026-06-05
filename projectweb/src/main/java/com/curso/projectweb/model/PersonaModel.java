@@ -1,5 +1,8 @@
 package com.curso.projectweb.model;
 
+import lombok.Data;
+
+@Data
 public class PersonaModel {
     private String idPersona;
     private String nombre;

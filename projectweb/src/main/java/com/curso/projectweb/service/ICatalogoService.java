@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface ICatalogoService {
     List<CatalogoModel> obtenerCatalogo(String tipo);
-    List<CatalogoModel> ontenerCiudadesPorEstado(String uuidEstado);
+    List<CatalogoModel> obtenerCiudadesPorEstado(String uuidEstado);
 }

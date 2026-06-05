@@ -1,7 +1,10 @@
 package com.curso.projectweb.model;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
+@Data
 public class TokenVerificatioModel {
     private String idTokenVerificacion;
     private String idPersona;
