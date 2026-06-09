@@ -1,0 +1,28 @@
+package com.lr.ulapedidos.repository;
+
+import com.lr.ulapedidos.dto.TopProductoDTO;
+import com.lr.ulapedidos.model.DetallePedidoModel;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface DetallePerdidoRepository {
+    List<DetallePedidoModel> findByPedidoIdPedido(Integer idPedido);
+
+    @Query(""" 
+            SELECT new com.lr.ulapedidos.dto.TopProductoDTO(
+                d.producto.nombre,
+                SUM(d.cantidad)
+            )
+            FROM
+                DetallePedidoModel d
+            WHERE
+                d.estado = 1
+            GROUP BY
+                d.producto.nombre
+            ORDER BY
+                SUM(d.cantidad) DESC
+            """)
+    List<TopProductoDTO> topVendidos();
+}
