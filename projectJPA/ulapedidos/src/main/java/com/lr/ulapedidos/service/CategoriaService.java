@@ -29,7 +29,7 @@ public class CategoriaService {
 
         categoria
                 .setNombre(request.getNombre())
-                .setDescription(request.getDescription());
+                .setDescripcion(request.getDescripcion());
 
         return repository.save(categoria);
     }

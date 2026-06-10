@@ -14,7 +14,7 @@ public class ProductoModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_productos")
     @SequenceGenerator(name = "seq_productos", sequenceName = "seq_productos", allocationSize = 1)
     @Column(name = "id_producto")
-    private Integer idPedido;
+    private Integer idProducto;//idPedido;
 
     @Column(name = "nombre")
     private String nombre;

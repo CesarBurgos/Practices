@@ -18,8 +18,8 @@ public class CategoriaModel {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @Column(name = "estado")
     private Integer estado;

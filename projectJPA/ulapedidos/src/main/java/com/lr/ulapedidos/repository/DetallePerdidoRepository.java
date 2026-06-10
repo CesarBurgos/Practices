@@ -2,12 +2,14 @@ package com.lr.ulapedidos.repository;
 
 import com.lr.ulapedidos.dto.TopProductoDTO;
 import com.lr.ulapedidos.model.DetallePedidoModel;
+import com.lr.ulapedidos.model.PedidoModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DetallePerdidoRepository {
+public interface DetallePerdidoRepository extends JpaRepository<DetallePedidoModel, Integer> {
     List<DetallePedidoModel> findByPedidoIdPedido(Integer idPedido);
 
     @Query(""" 

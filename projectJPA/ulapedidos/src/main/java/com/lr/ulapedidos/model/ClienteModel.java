@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class ClienteModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_clintes")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_clientes")
     @SequenceGenerator(name = "seq_clientes", sequenceName = "seq_clientes", allocationSize = 1)
     @Column(name = "id_cliente")
     private Integer idCliente;
