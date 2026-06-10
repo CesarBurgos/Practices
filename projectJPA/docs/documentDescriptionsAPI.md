@@ -1,3 +1,5 @@
+| Documentación online | https://documenter.getpostman.com/view/55125712/2sBXwsKpVF
+
 | Property | Value |
 | --- | --- |
 | info | _object_ |
@@ -196,7 +198,11 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Nueva Categoria",<br>  "descripcion": "Creando nueva categoria",<br>  "estado": 1<br>} |
+| raw | {
+<br>  "nombre": "Nueva Categoria",
+<br>  "descripcion": "Creando nueva categoria",
+<br>  "estado": 1
+<br>} |
 
 ######### item[0].item[2].request.body.options
 | Property | Value |
@@ -259,7 +265,11 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Nueva Categoria",<br>  "descripcion": "Creando nueva categoria",<br>  "estado": 1<br>} |
+| raw | {
+<br>  "nombre": "Nueva Categoria",
+<br>  "descripcion": "Creando nueva categoria",
+<br>  "estado": 1
+<br>} |
 
 ########### item[0].item[2].response[0].originalRequest.body.options
 | Property | Value |
@@ -300,7 +310,11 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "CategoriaEditada",<br>  "descripcion": "EditandoCategoria",<br>  "estado": 0<br>} |
+| raw | {
+<br>  "nombre": "CategoriaEditada",
+<br>  "descripcion": "EditandoCategoria",
+<br>  "estado": 0
+<br>} |
 
 ######### item[0].item[3].request.body.options
 | Property | Value |
@@ -363,7 +377,11 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "CategoriaEditada",<br>  "descripcion": "EditandoCategoria",<br>  "estado": 0<br>} |
+| raw | {
+<br>  "nombre": "CategoriaEditada",
+<br>  "descripcion": "EditandoCategoria",
+<br>  "estado": 0
+<br>} |
 
 ########### item[0].item[3].response[0].originalRequest.body.options
 | Property | Value |
@@ -624,7 +642,13 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Usuario Prueba1",<br>  "apellido": "Apellido Tester",<br>  "telefono": "747112345",<br>  "correo": "correo@tester.com",<br>  "fechaRegistro": "2026-06-10T19:55:18.838Z"<br>} |
+| raw | {
+<br>  "nombre": "Usuario Prueba1",
+<br>  "apellido": "Apellido Tester",
+<br>  "telefono": "747112345",
+<br>  "correo": "correo@tester.com",
+<br>  "fechaRegistro": "2026-06-10T19:55:18.838Z"
+<br>} |
 
 ######### item[1].item[2].request.body.options
 | Property | Value |
@@ -687,7 +711,13 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Usuario Prueba1",<br>  "apellido": "Apellido Tester",<br>  "telefono": "747112345",<br>  "correo": "correo@tester.com",<br>  "fechaRegistro": "2026-06-10T19:55:18.838Z"<br>} |
+| raw | {
+<br>  "nombre": "Usuario Prueba1",
+<br>  "apellido": "Apellido Tester",
+<br>  "telefono": "747112345",
+<br>  "correo": "correo@tester.com",
+<br>  "fechaRegistro": "2026-06-10T19:55:18.838Z"
+<br>} |
 
 ########### item[1].item[2].response[0].originalRequest.body.options
 | Property | Value |
@@ -728,7 +758,13 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Usuario Prueba1 Modificado",<br>  "apellido": "Apellido Tester Modificado",<br>  "telefono": "74710000",<br>  "correo": "correoModificado@tester.com",<br>  "fechaRegistro": "2026-06-10T20:01:23.655Z"<br>} |
+| raw | {
+<br>  "nombre": "Usuario Prueba1 Modificado",
+<br>  "apellido": "Apellido Tester Modificado",
+<br>  "telefono": "74710000",
+<br>  "correo": "correoModificado@tester.com",
+<br>  "fechaRegistro": "2026-06-10T20:01:23.655Z"
+<br>} |
 
 ######### item[1].item[3].request.body.options
 | Property | Value |
@@ -791,7 +827,13 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "Usuario Prueba1 Modificado",<br>  "apellido": "Apellido Tester Modificado",<br>  "telefono": "74710000",<br>  "correo": "correoModificado@tester.com",<br>  "fechaRegistro": "2026-06-10T20:01:23.655Z"<br>} |
+| raw | {
+<br>  "nombre": "Usuario Prueba1 Modificado",
+<br>  "apellido": "Apellido Tester Modificado",
+<br>  "telefono": "74710000",
+<br>  "correo": "correoModificado@tester.com",
+<br>  "fechaRegistro": "2026-06-10T20:01:23.655Z"
+<br>} |
 
 ########### item[1].item[3].response[0].originalRequest.body.options
 | Property | Value |
@@ -916,7 +958,15 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "idCliente": 1,<br>  "productos": [<br>    {<br>      "idProducto": 1,<br>      "cantidad": 2<br>    }<br>  ]<br>} |
+| raw | {
+<br>  "idCliente": 1,
+<br>  "productos": [
+<br>    {
+<br>      "idProducto": 1,
+<br>      "cantidad": 2
+<br>    }
+<br>  ]
+<br>} |
 
 ######### item[2].item[0].request.body.options
 | Property | Value |
@@ -979,7 +1029,15 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "idCliente": 1,<br>  "productos": [<br>    {<br>      "idProducto": 1,<br>      "cantidad": 2<br>    }<br>  ]<br>} |
+| raw | {
+<br>  "idCliente": 1,
+<br>  "productos": [
+<br>    {
+<br>      "idProducto": 1,
+<br>      "cantidad": 2
+<br>    }
+<br>  ]
+<br>} |
 
 ########### item[2].item[0].response[0].originalRequest.body.options
 | Property | Value |
@@ -1445,7 +1503,17 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "ProductoPrueba",<br>  "descripcion": "Descripción del producto de prueba",<br>  "precio": 100.00,<br>  "stock": 24,<br>  "urlImagen": "",<br>  "estado": 1,<br>  "categoria": {<br>    "idCategoria": 1<br>  }<br>} |
+| raw | {
+<br>  "nombre": "ProductoPrueba",
+<br>  "descripcion": "Descripción del producto de prueba",
+<br>  "precio": 100.00,
+<br>  "stock": 24,
+<br>  "urlImagen": "",
+<br>  "estado": 1,
+<br>  "categoria": {
+<br>    "idCategoria": 1
+<br>  }
+<br>} |
 
 ######### item[3].item[2].request.body.options
 | Property | Value |
@@ -1508,7 +1576,17 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "ProductoPrueba",<br>  "descripcion": "Descripción del producto de prueba",<br>  "precio": 100.00,<br>  "stock": 24,<br>  "urlImagen": "",<br>  "estado": 1,<br>  "categoria": {<br>    "idCategoria": 1<br>  }<br>} |
+| raw | {
+<br>  "nombre": "ProductoPrueba",
+<br>  "descripcion": "Descripción del producto de prueba",
+<br>  "precio": 100.00,
+<br>  "stock": 24,
+<br>  "urlImagen": "",
+<br>  "estado": 1,
+<br>  "categoria": {
+<br>    "idCategoria": 1
+<br>  }
+<br>} |
 
 ########### item[3].item[2].response[0].originalRequest.body.options
 | Property | Value |
@@ -1612,7 +1690,17 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>  "nombre": "ProductoModificado",<br>  "descripcion": "Descripción modificado y categoria",<br>  "precio": 200.00,<br>  "stock": 2,<br>  "urlImagen": "",<br>  "estado": 1,<br>  "categoria": {<br>    "idCategoria": 2<br>  }<br>} |
+| raw | {
+<br>  "nombre": "ProductoModificado",
+<br>  "descripcion": "Descripción modificado y categoria",
+<br>  "precio": 200.00,
+<br>  "stock": 2,
+<br>  "urlImagen": "",
+<br>  "estado": 1,
+<br>  "categoria": {
+<br>    "idCategoria": 2
+<br>  }
+<br>} |
 
 ########### item[3].item[3].response[0].originalRequest.body.options
 | Property | Value |
@@ -1653,7 +1741,9 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>    "stock": 500<br>} |
+| raw | {
+<br>    "stock": 500
+<br>} |
 
 ######### item[3].item[4].request.body.options
 | Property | Value |
@@ -1716,7 +1806,9 @@
 | --- | --- |
 | mode | raw |
 | options | _object_ |
-| raw | {<br>    "stock": 500<br>} |
+| raw | {
+<br>    "stock": 500
+<br>} |
 
 ########### item[3].item[4].response[0].originalRequest.body.options
 | Property | Value |
