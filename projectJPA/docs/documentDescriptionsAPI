@@ -1,0 +1,1962 @@
+{
+	"info": {
+		"_postman_id": "f020d23d-e19e-42f6-9c98-becb7374db66",
+		"name": "EndpointsProjectJPA",
+		"description": "Documentación de los Endpoints hechos con la API con SpringBoot y JPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "55125712",
+		"_collection_link": "https://ed-cesar-burgos-8898624.postman.co/workspace/539ac8c5-2dfc-48ce-b645-719c6e96cb4f/collection/55125712-f020d23d-e19e-42f6-9c98-becb7374db66?action=share&source=collection_link&creator=55125712"
+	},
+	"item": [
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"categorias"
+							]
+						},
+						"description": "Método que retorna el listado de categorias"
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/categorias",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"categorias"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:18:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Categoria registrada correctamente\",\n    \"data\": [\n        {\n            \"idCategoria\": 1,\n            \"nombre\": \"Tacos\",\n            \"descripcion\": \"Tacos de mariscos\",\n            \"estado\": 1\n        },\n        {\n            \"idCategoria\": 2,\n            \"nombre\": \"Bebidas\",\n            \"descripcion\": \"Bebidas preparadas\",\n            \"estado\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "BuscarPorID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"categorias",
+								"1"
+							]
+						},
+						"description": "Método que retorna la categoria proporcionada por su ID"
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/categorias/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"categorias",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:20:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Categoria registrada correctamente\",\n    \"data\": {\n        \"idCategoria\": 1,\n        \"nombre\": \"Tacos\",\n        \"descripcion\": \"Tacos de mariscos\",\n        \"estado\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Nueva Categoria\",\r\n  \"descripcion\": \"Creando nueva categoria\",\r\n  \"estado\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Nueva Categoria\",\r\n  \"descripcion\": \"Creando nueva categoria\",\r\n  \"estado\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/categorias",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"categorias"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:44:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Categoria registrada correctamente\",\n    \"data\": {\n        \"idCategoria\": 4,\n        \"nombre\": \"Nueva Categoria\",\n        \"descripcion\": \"Creando nueva categoria\",\n        \"estado\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"CategoriaEditada\",\r\n  \"descripcion\": \"EditandoCategoria\",\r\n  \"estado\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/categorias/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"categorias",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"CategoriaEditada\",\r\n  \"descripcion\": \"EditandoCategoria\",\r\n  \"estado\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/categorias/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"categorias",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:48:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Categoria actualizada correctamente\",\n    \"data\": {\n        \"idCategoria\": 3,\n        \"nombre\": \"CategoriaEditada\",\n        \"descripcion\": \"EditandoCategoria\",\n        \"estado\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/categorias/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"categorias",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/categorias/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"categorias",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:49:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Categoria eliminada correctamente\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints acerca de la categorias de productos"
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:52:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"idCliente\": 1,\n            \"nombre\": \"Carlos\",\n            \"apellido\": \"Sanchez\",\n            \"telefono\": \"4731305687\",\n            \"correo\": \"admin@ulamariscos.com\",\n            \"estado\": 1,\n            \"fechaRegistro\": \"2026-06-09T15:12:26.129518\"\n        },\n        {\n            \"idCliente\": 2,\n            \"nombre\": \"Uriel\",\n            \"apellido\": \"Gonzalez\",\n            \"telefono\": \"5531305687\",\n            \"correo\": \"uriel@ulamariscos.com\",\n            \"estado\": 1,\n            \"fechaRegistro\": \"2026-06-09T15:12:26.159601\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "buscarPorID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clientes/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clientes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 19:54:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": {\n        \"idCliente\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Sanchez\",\n        \"telefono\": \"4731305687\",\n        \"correo\": \"admin@ulamariscos.com\",\n        \"estado\": 1,\n        \"fechaRegistro\": \"2026-06-09T15:12:26.129518\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Usuario Prueba1\",\r\n  \"apellido\": \"Apellido Tester\",\r\n  \"telefono\": \"747112345\",\r\n  \"correo\": \"correo@tester.com\",\r\n  \"fechaRegistro\": \"2026-06-10T19:55:18.838Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Usuario Prueba1\",\r\n  \"apellido\": \"Apellido Tester\",\r\n  \"telefono\": \"747112345\",\r\n  \"correo\": \"correo@tester.com\",\r\n  \"fechaRegistro\": \"2026-06-10T19:55:18.838Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:00:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Cliente registrado correctamente\",\n    \"data\": {\n        \"idCliente\": 3,\n        \"nombre\": \"Usuario Prueba1\",\n        \"apellido\": \"Apellido Tester\",\n        \"telefono\": \"747112345\",\n        \"correo\": \"correo@tester.com\",\n        \"estado\": 1,\n        \"fechaRegistro\": \"2026-06-10T19:55:18.838\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Usuario Prueba1 Modificado\",\r\n  \"apellido\": \"Apellido Tester Modificado\",\r\n  \"telefono\": \"74710000\",\r\n  \"correo\": \"correoModificado@tester.com\",\r\n  \"fechaRegistro\": \"2026-06-10T20:01:23.655Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Usuario Prueba1 Modificado\",\r\n  \"apellido\": \"Apellido Tester Modificado\",\r\n  \"telefono\": \"74710000\",\r\n  \"correo\": \"correoModificado@tester.com\",\r\n  \"fechaRegistro\": \"2026-06-10T20:01:23.655Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/clientes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clientes",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:02:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Cliente actualizado correctamente\",\n    \"data\": {\n        \"idCliente\": 3,\n        \"nombre\": \"Usuario Prueba1 Modificado\",\n        \"apellido\": \"Apellido Tester Modificado\",\n        \"telefono\": \"74710000\",\n        \"correo\": \"correoModificado@tester.com\",\n        \"estado\": 1,\n        \"fechaRegistro\": \"2026-06-10T19:55:18.838\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clientes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clientes",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:03:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Cliente eliminado correctamente\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints acerca de la información de los clientes"
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "GenerarPedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idCliente\": 1,\r\n  \"productos\": [\r\n    {\r\n      \"idProducto\": 1,\r\n      \"cantidad\": 2\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"idCliente\": 1,\r\n  \"productos\": [\r\n    {\r\n      \"idProducto\": 1,\r\n      \"cantidad\": 2\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/pedidos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"pedidos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:06:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Pedido generado correctamente\",\n    \"data\": {\n        \"idPedido\": 1,\n        \"cliente\": {\n            \"idCliente\": 1,\n            \"nombre\": \"Carlos\",\n            \"apellido\": \"Sanchez\",\n            \"telefono\": \"4731305687\",\n            \"correo\": \"admin@ulamariscos.com\",\n            \"estado\": 1,\n            \"fechaRegistro\": \"2026-06-09T15:12:26.129518\"\n        },\n        \"fechaPedido\": \"2026-06-10T14:06:28.9300822\",\n        \"total\": 190,\n        \"estadoPedido\": \"GENERADO\",\n        \"estado\": 1,\n        \"fechaCancelacion\": null,\n        \"detalles\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ListadoPedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/pedidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"pedidos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:07:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"idPedido\": 1,\n            \"idCLiente\": 1,\n            \"fechaPedido\": \"2026-06-10T14:06:28.930082\",\n            \"total\": 190,\n            \"estadoPedido\": \"GENERADO\",\n            \"estado\": 1,\n            \"detalles\": [\n                {\n                    \"idDetalle\": 1,\n                    \"idProducto\": 1,\n                    \"nombreProducto\": \"Taco Gobernador\",\n                    \"cantidad\": 2,\n                    \"precioUnitario\": 95,\n                    \"subtotal\": 190\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "ListadoPedidosPorCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/pedidos/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"pedidos",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/pedidos/cliente/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"pedidos",
+										"cliente",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:08:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"idPedido\": 1,\n            \"idCLiente\": null,\n            \"fechaPedido\": \"2026-06-10T14:06:28.930082\",\n            \"total\": 190,\n            \"estadoPedido\": \"GENERADO\",\n            \"estado\": null,\n            \"detalles\": [\n                {\n                    \"idDetalle\": 1,\n                    \"idProducto\": 1,\n                    \"nombreProducto\": \"Taco Gobernador\",\n                    \"cantidad\": 2,\n                    \"precioUnitario\": 95,\n                    \"subtotal\": 190\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "ListadoPedidosPorEstado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/pedidos/estado/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"pedidos",
+								"estado",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/pedidos/estado/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"pedidos",
+										"estado",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:11:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"idPedido\": 1,\n            \"idCLiente\": 1,\n            \"fechaPedido\": \"2026-06-10T14:06:28.930082\",\n            \"total\": 190,\n            \"estadoPedido\": \"GENERADO\",\n            \"estado\": 1,\n            \"detalles\": [\n                {\n                    \"idDetalle\": 1,\n                    \"idProducto\": 1,\n                    \"nombreProducto\": \"Taco Gobernador\",\n                    \"cantidad\": 2,\n                    \"precioUnitario\": 95,\n                    \"subtotal\": 190\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CancelarPedido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/pedidos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"pedidos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:11:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Pedido cancelado correctamente\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints acerca de los pedidos realizados"
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Listado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:13:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"idProducto\": 1,\n            \"nombre\": \"Taco Gobernador\",\n            \"descripcion\": \"Taco de camarón\",\n            \"precio\": 95,\n            \"stock\": 50,\n            \"urlImagen\": \"https://i.blogs.es/ba0112/tacos-gobernador/650_1200.jpg\",\n            \"estado\": 1,\n            \"categoria\": {\n                \"idCategoria\": 1,\n                \"nombre\": \"Tacos\",\n                \"descripcion\": \"Tacos de mariscos\",\n                \"estado\": 1\n            }\n        },\n        {\n            \"idProducto\": 2,\n            \"nombre\": \"Agua de Horchata\",\n            \"descripcion\": \"Bebida natural\",\n            \"precio\": 35,\n            \"stock\": 100,\n            \"urlImagen\": \"https://media.gq.com.mx/photos/673208b90bd4a888d68a1092/1:1/w_2000,h_2000,c_limit/Horchata.jpg\",\n            \"estado\": 1,\n            \"categoria\": {\n                \"idCategoria\": 2,\n                \"nombre\": \"Bebidas\",\n                \"descripcion\": \"Bebidas preparadas\",\n                \"estado\": 1\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "BuscarPorID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/productos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:13:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": {\n        \"idProducto\": 1,\n        \"nombre\": \"Taco Gobernador\",\n        \"descripcion\": \"Taco de camarón\",\n        \"precio\": 95,\n        \"stock\": 50,\n        \"urlImagen\": \"https://i.blogs.es/ba0112/tacos-gobernador/650_1200.jpg\",\n        \"estado\": 1,\n        \"categoria\": {\n            \"idCategoria\": 1,\n            \"nombre\": \"Tacos\",\n            \"descripcion\": \"Tacos de mariscos\",\n            \"estado\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"ProductoPrueba\",\r\n  \"descripcion\": \"Descripción del producto de prueba\",\r\n  \"precio\": 100.00,\r\n  \"stock\": 24,\r\n  \"urlImagen\": \"\",\r\n  \"estado\": 1,\r\n  \"categoria\": {\r\n    \"idCategoria\": 1\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"ProductoPrueba\",\r\n  \"descripcion\": \"Descripción del producto de prueba\",\r\n  \"precio\": 100.00,\r\n  \"stock\": 24,\r\n  \"urlImagen\": \"\",\r\n  \"estado\": 1,\r\n  \"categoria\": {\r\n    \"idCategoria\": 1\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:16:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Producto registrado correctamente\",\n    \"data\": {\n        \"idProducto\": 3,\n        \"nombre\": \"ProductoPrueba\",\n        \"descripcion\": \"Descripción del producto de prueba\",\n        \"precio\": 100,\n        \"stock\": 24,\n        \"urlImagen\": \"\",\n        \"estado\": 1,\n        \"categoria\": {\n            \"idCategoria\": 1,\n            \"nombre\": null,\n            \"descripcion\": null,\n            \"estado\": null\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/productos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"ProductoModificado\",\r\n  \"descripcion\": \"Descripción modificado y categoria\",\r\n  \"precio\": 200.00,\r\n  \"stock\": 2,\r\n  \"urlImagen\": \"\",\r\n  \"estado\": 1,\r\n  \"categoria\": {\r\n    \"idCategoria\": 2\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/productos/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:19:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Producto actualizado correctamente\",\n    \"data\": {\n        \"idProducto\": 3,\n        \"nombre\": \"ProductoModificado\",\n        \"descripcion\": \"Descripción modificado y categoria\",\n        \"precio\": 200,\n        \"stock\": 2,\n        \"urlImagen\": \"\",\n        \"estado\": 1,\n        \"categoria\": {\n            \"idCategoria\": 2,\n            \"nombre\": null,\n            \"descripcion\": null,\n            \"estado\": null\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "ActualizarStock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stock\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/productos/3/stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos",
+								"3",
+								"stock"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"stock\": 500\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/productos/3/stock",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos",
+										"3",
+										"stock"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:22:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Stock actualizado correctamente\",\n    \"data\": {\n        \"idProducto\": 3,\n        \"nombre\": \"ProductoModificado\",\n        \"descripcion\": \"Descripción modificado y categoria\",\n        \"precio\": 200,\n        \"stock\": 500,\n        \"urlImagen\": null,\n        \"estado\": 1,\n        \"categoria\": {\n            \"idCategoria\": 2,\n            \"nombre\": \"Bebidas\",\n            \"descripcion\": \"Bebidas preparadas\",\n            \"estado\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/productos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"productos",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/productos/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"productos",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:23:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Producto eliminado correctamente\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints acerca de los productos"
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "MasVendidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/reportes/top-vendidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"reportes",
+								"top-vendidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ejemplo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/reportes/top-vendidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"reportes",
+										"top-vendidos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2026 20:24:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mensaje\": \"Consulta exitosa\",\n    \"data\": [\n        {\n            \"nombreProducto\": \"Taco Gobernador\",\n            \"totalVendido\": 2\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints acerca del reporte de ventas"
+		}
+	]
+}
