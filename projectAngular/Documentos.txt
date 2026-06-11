@@ -1,0 +1,37 @@
+ng build --configuration production
+ng build --configuration qa
+ng build --configuration dev
+
+"configurations": {
+  "production": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.dev.ts",
+        "with": "src/environments/environment.prod.ts"
+      }
+    ]
+  },
+  "dev": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.dev.ts",
+        "with": "src/environments/environment.dev.ts"
+      }
+    ]
+  },
+  "qa": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.dev.ts",
+        "with": "src/environments/environment.qa.ts"
+      }
+    ]
+  }
+}
+ 
+
+ng add @angular/material
+
+? Choose a prebuilt theme name --- ninguno
+? Set up global Angular Material typography styles? (Y/n) y
+? Include the Angular animations module? (Y/n) y
