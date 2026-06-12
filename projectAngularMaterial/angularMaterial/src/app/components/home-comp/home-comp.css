@@ -1,0 +1,110 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: row;
+}
+
+.login-content {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-direction:row;
+}
+
+.hero-section {
+  flex: 1;
+  width: 100%;
+}
+
+.form-section {
+  flex: 1;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #183153;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: rgba(0, 0, 0, 0.6);
+  max-width: 650px;
+}
+
+.badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 10px 16px;
+  border-radius: 16px;
+  color: white;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background: #1976d2;
+}
+
+.badge-success {
+  background: #2e7d32;
+}
+
+.login-card {
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-button {
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.register-text {
+  text-align: center;
+  margin: 1rem 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.register-link {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .login-content {
+    flex-direction: column;
+  }
+
+  .form-section {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}

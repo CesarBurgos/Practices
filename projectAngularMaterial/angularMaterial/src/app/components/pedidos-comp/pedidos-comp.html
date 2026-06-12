@@ -1,0 +1,139 @@
+<div class="container my-5">
+
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+
+    <h2 class="mb-0">
+      Monitor General de Comandas (Cocina / Caja) 🧾
+    </h2>
+
+    <mat-form-field appearance="outline" style="max-width: 300px; width: 100%;">
+      <mat-label>Buscar Comanda por ID</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="busquedaId"
+        (input)="buscarPorId()">
+    </mat-form-field>
+
+  </div>
+
+  <mat-button-toggle-group
+    [value]="filtroEstadoSeleccionado"
+    class="mb-4">
+
+    <mat-button-toggle
+      value="TODOS"
+      (click)="cambiarFiltroEstado('TODOS')">
+      📋 Todos los Pedidos
+    </mat-button-toggle>
+
+    <mat-button-toggle
+      value="1"
+      (click)="cambiarFiltroEstado('1')">
+      🔥 En Cocina (Activos)
+    </mat-button-toggle>
+
+    <mat-button-toggle
+      value="0"
+      (click)="cambiarFiltroEstado('0')">
+      🚫 Cancelados
+    </mat-button-toggle>
+
+  </mat-button-toggle-group>
+
+  <mat-card *ngIf="pedidosFiltrados.length === 0">
+    <mat-card-content class="text-center">
+      No se encontraron pedidos con el filtro seleccionado.
+    </mat-card-content>
+  </mat-card>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+
+    <div
+      class="col"
+      *ngFor="let p of pedidosFiltrados">
+
+      <mat-card>
+
+        <mat-card-header>
+
+          <mat-card-title>
+            Comanda #{{ p.idPedido }}
+          </mat-card-title>
+
+          <mat-chip-set>
+
+            <mat-chip
+              [highlighted]="true">
+
+              {{
+                p.estado === 1
+                  ? p.estadoPedido
+                  : 'INACTIVO / ' + p.estadoPedido
+              }}
+
+            </mat-chip>
+
+          </mat-chip-set>
+
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <p>
+            <strong>Cliente ID:</strong>
+            {{ p.idCliente }}
+          </p>
+
+          <p>
+            Fecha:
+            {{ p.fechaPedido | date:'medium' }}
+          </p>
+
+          <mat-divider></mat-divider>
+
+          <h4>Detalle del consumo:</h4>
+
+          <mat-list>
+
+            <mat-list-item
+              *ngFor="let det of p.detalles">
+
+              {{ det.cantidad }}x -
+              {{ det.producto?.nombre || det.nombreProducto }}
+              (${{ det.precioUnitario }} c/u)
+
+            </mat-list-item>
+
+          </mat-list>
+
+          <mat-divider></mat-divider>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <h3>
+              Total: ${{ p.total }}
+            </h3>
+
+            <button
+              mat-raised-button
+              color="warn"
+              *ngIf="p.estado === 1"
+              (click)="cancelarOrden(p.idPedido)">
+
+              🚫 Cancelar Orden
+
+            </button>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </div>
+
+</div>

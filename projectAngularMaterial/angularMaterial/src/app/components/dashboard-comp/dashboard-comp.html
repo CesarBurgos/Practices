@@ -1,0 +1,283 @@
+  <div class="container-fluid my-4">
+    <div class="row">
+
+      <div class="col-md-8 col-lg-9">
+
+        <mat-card class="mb-4">
+          <mat-card-content>
+            <div class="d-flex justify-content-between align-items-center">
+
+              <div>
+                <h4 class="mb-0 fw-bold">
+                  Mesa de: {{ usuarioLogeado?.nombre }} {{ usuarioLogeado?.apellido }}
+                </h4>
+
+                <small class="text-muted">
+                  Contacto: {{ usuarioLogeado?.telefono }}
+                  |
+                  Rol:
+                  {{ authService.isAdmin() ? 'Administrador' : 'Comensal' }}
+                </small>
+              </div>
+
+              <button
+                mat-stroked-button
+                color="primary"
+                data-bs-toggle="modal"
+                data-bs-target="#historialModal"
+                *ngIf="!authService.isAdmin()">
+
+                🕒 Mis Pedidos Anteriores
+
+              </button>
+
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-4">
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Filtrar menú por Categoría</mat-label>
+
+              <mat-select
+                [(ngModel)]="idCategoriaSeleccionada"
+                (selectionChange)="filtrarPorCategoria()">
+
+                <mat-option value="">
+                  Todo el Menú
+                </mat-option>
+
+                <mat-option
+                  *ngFor="let cat of categorias"
+                  [value]="cat.idCategoria">
+
+                  {{ cat.nombre }}
+
+                </mat-option>
+
+              </mat-select>
+
+            </mat-form-field>
+
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+
+          <div class="col" *ngFor="let prod of productosFiltrados">
+
+            <mat-card class="h-100">
+
+              <img
+                mat-card-image
+                [src]="prod.urlImagen || 'assets/default-mariscos.jpg'"
+                alt="platillo"
+                style="height: 180px; object-fit: cover;">
+
+              <mat-card-content class="d-flex flex-column">
+
+                <h5 class="fw-bold">
+                  {{ prod.nombre }}
+                </h5>
+
+                <p class="text-muted small flex-grow-1">
+                  {{ prod.descripcion }}
+                </p>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+
+                  <span class="fs-5 fw-bold text-success">
+                    ${{ prod.precio }}
+                  </span>
+
+                  <mat-chip>
+                    Stock: {{ prod.stock }}
+                  </mat-chip>
+
+                </div>
+
+              </mat-card-content>
+
+              <mat-card-actions>
+
+                <button
+                  mat-raised-button
+                  color="accent"
+                  class="w-100"
+                  [disabled]="prod.stock <= 0"
+                  (click)="agregarAlCarrito(prod)">
+
+                  {{ prod.stock > 0 ? 'Agregar a Orden' : 'Agotado' }}
+
+                </button>
+
+              </mat-card-actions>
+
+            </mat-card>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-4 col-lg-3 border-start bg-white min-vh-100 p-3">
+
+        <h4 class="fw-bold border-bottom pb-2">
+          Tu Comida 🛒
+        </h4>
+
+        <div *ngIf="carrito.length === 0" class="text-center text-muted my-5">
+          <p>No has seleccionado platillos aún.</p>
+        </div>
+
+        <mat-list class="mb-4 overflow-auto" style="max-height: 400px;">
+
+          <mat-list-item *ngFor="let item of carrito">
+
+            <div class="w-100 d-flex justify-content-between align-items-center">
+
+              <div>
+                <h6 class="mb-0 fw-bold">
+                  {{ item.nombre }}
+                </h6>
+
+                <small class="text-muted">
+                  ${{ item.precio }} x {{ item.cantidad }}
+                </small>
+              </div>
+
+              <mat-chip>
+                {{ item.cantidad }}
+              </mat-chip>
+
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="eliminarDelCarrito(item.idProducto)">
+
+                <mat-icon>delete</mat-icon>
+
+              </button>
+
+            </div>
+
+          </mat-list-item>
+
+        </mat-list>
+
+        <div class="border-top pt-3" *ngIf="carrito.length > 0">
+
+          <div class="d-flex justify-content-between fs-4 fw-bold mb-4">
+
+            <span>Total:</span>
+
+            <span class="text-success">
+              ${{ totalCarrito }}
+            </span>
+
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-100"
+            (click)="hacerPedido()">
+
+            Hacer Pedido 🔥
+
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL -->
+  <div
+  class="modal fade"
+  id="historialModal"
+  tabindex="-1"
+  aria-labelledby="historialModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="historialModalLabel">
+          Mi Historial en ULA Mariscos
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <table class="table align-middle">
+
+          <thead>
+          <tr>
+            <th>ID Pedido</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Total</th>
+            <th>Acción</th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <tr *ngFor="let ped of historialPedidos">
+
+            <td>
+              #{{ ped.idPedido }}
+            </td>
+
+            <td>
+              {{ ped.fechaPedido | date:'short' }}
+            </td>
+
+            <td>
+              <mat-chip color="primary">
+                {{ ped.estadoPedido }}
+              </mat-chip>
+            </td>
+
+            <td class="fw-bold">
+              ${{ ped.total }}
+            </td>
+
+            <td>
+
+              <button
+                mat-stroked-button
+                color="primary"
+                (click)="repetirPedido(ped)"
+                data-bs-dismiss="modal">
+
+                🔄 Volver a Pedir
+
+              </button>
+
+            </td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

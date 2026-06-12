@@ -1,0 +1,255 @@
+:host {
+  display: block;
+}
+
+/* ==========================
+   LAYOUT GENERAL
+   ========================== */
+
+.container {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -12px;
+}
+
+.col-md-4,
+.col-md-8,
+.col-6 {
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.col-md-8 {
+  flex: 0 0 66.666%;
+  max-width: 66.666%;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* ==========================
+   UTILIDADES
+   ========================== */
+
+.w-100 {
+  width: 100%;
+}
+
+.mb-2 {
+  margin-bottom: 8px;
+}
+
+.mb-3 {
+  margin-bottom: 16px;
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+.my-5 {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.text-success {
+  color: #2e7d32;
+}
+
+/* ==========================
+   TITULO
+   ========================== */
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212121;
+  margin-top: 0;
+}
+
+/* ==========================
+   FORMULARIO
+   ========================== */
+
+mat-form-field {
+  width: 100%;
+}
+
+form {
+  margin-top: 16px;
+}
+
+mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* ==========================
+   CARDS
+   ========================== */
+
+mat-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.08),
+    0 1px 3px rgba(0,0,0,.04);
+}
+
+mat-card-header {
+  padding-bottom: 12px;
+}
+
+/* ==========================
+   TABLA
+   ========================== */
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead tr {
+  background: #f5f5f5;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px;
+  font-weight: 600;
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid #eeeeee;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background .2s;
+}
+
+.table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* ==========================
+   IMAGEN PRODUCTO
+   ========================== */
+
+.table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+/* ==========================
+   PRECIO
+   ========================== */
+
+.text-success {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ==========================
+   CHIPS
+   ========================== */
+
+mat-chip {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ==========================
+   BOTONES DE ACCIÓN
+   ========================== */
+
+td button[mat-icon-button] {
+  margin-right: 4px;
+}
+
+td button[mat-icon-button]:last-child {
+  margin-right: 0;
+}
+
+/* ==========================
+   BOTONES FORMULARIO
+   ========================== */
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+  font-weight: 600;
+}
+
+/* ==========================
+   SCROLL TABLA
+   ========================== */
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 8px;
+}
+
+/* ==========================
+   RESPONSIVE
+   ========================== */
+
+@media (max-width: 992px) {
+
+  .col-md-4,
+  .col-md-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px;
+  }
+}

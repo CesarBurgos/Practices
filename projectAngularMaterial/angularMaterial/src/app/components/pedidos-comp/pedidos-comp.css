@@ -1,0 +1,245 @@
+:host {
+  display: block;
+}
+
+/* =========================
+   CONTENEDOR GENERAL
+   ========================= */
+
+.container {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+/* =========================
+   UTILIDADES
+   ========================= */
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center,
+.align-items-md-center {
+  align-items: center;
+}
+
+.gap-3 {
+  gap: 16px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+.mt-3 {
+  margin-top: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* =========================
+   TITULO
+   ========================= */
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212121;
+}
+
+h3 {
+  margin: 0;
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+h4 {
+  margin: 16px 0;
+  font-weight: 600;
+}
+
+/* =========================
+   FILTRO
+   ========================= */
+
+mat-form-field {
+  width: 100%;
+}
+
+/* =========================
+   TOGGLE GROUP
+   ========================= */
+
+mat-button-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: none;
+}
+
+mat-button-toggle {
+  border-radius: 12px !important;
+}
+
+.mat-button-toggle-checked {
+  font-weight: 600;
+}
+
+/* =========================
+   GRID DE PEDIDOS
+   ========================= */
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 24px;
+}
+
+.col {
+  width: 100%;
+}
+
+/* =========================
+   TARJETAS
+   ========================= */
+
+mat-card {
+  height: 100%;
+  border-radius: 16px;
+  transition: all .2s ease;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.08),
+    0 1px 3px rgba(0,0,0,.05);
+}
+
+mat-card:hover {
+  transform: translateY(-2px);
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+}
+
+mat-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* =========================
+   CHIPS
+   ========================= */
+
+mat-chip {
+  font-weight: 600;
+}
+
+/* =========================
+   DETALLE PEDIDO
+   ========================= */
+
+mat-list {
+  margin: 12px 0;
+}
+
+mat-list-item {
+  min-height: 42px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+mat-list-item:last-child {
+  border-bottom: none;
+}
+
+p {
+  margin: 8px 0;
+  color: #555;
+}
+
+strong {
+  color: #212121;
+}
+
+/* =========================
+   TOTAL Y ACCIONES
+   ========================= */
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button[mat-raised-button] {
+  font-weight: 600;
+}
+
+/* =========================
+   MENSAJE VACÍO
+   ========================= */
+
+mat-card .text-center {
+  padding: 24px;
+  color: #757575;
+  font-size: 1rem;
+}
+
+/* =========================
+   DIVIDERS
+   ========================= */
+
+mat-divider {
+  margin: 16px 0;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .d-flex.flex-column.flex-md-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  mat-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}

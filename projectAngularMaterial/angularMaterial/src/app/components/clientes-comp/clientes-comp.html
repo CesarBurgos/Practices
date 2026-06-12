@@ -1,0 +1,118 @@
+<!-- Encabezado -->
+<div style="padding: 1.5rem">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+    <h2 style="margin: 0; display: flex; align-items: center; gap: 8px;">
+      <mat-icon>group</mat-icon>
+      Directorio de clientes
+    </h2>
+    <mat-form-field appearance="outline" style="width: 220px; margin: 0;">
+      <mat-label>Buscar por ID</mat-label>
+      <input matInput type="number" [(ngModel)]="busquedaId" (keyup.enter)="buscarPorId()" />
+      <button matSuffix mat-icon-button (click)="buscarPorId()" matTooltip="Buscar">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <!-- Tabla -->
+  <mat-card>
+    <mat-card-content>
+      <table mat-table [dataSource]="clientes" style="width: 100%">
+
+        <ng-container matColumnDef="idCliente">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let item">
+            <mat-chip>#{{ item.idCliente }}</mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
+          <td mat-cell *matCellDef="let item">
+            <strong>{{ item.nombre }} {{ item.apellido }}</strong>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+          <td mat-cell *matCellDef="let item">{{ item.telefono }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef>Correo electrónico</th>
+          <td mat-cell *matCellDef="let item">
+            <span style="background: #fff9c4; padding: 2px 6px; border-radius: 4px; font-size: 13px;">
+              {{ item.correo }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef>Fecha registro</th>
+          <td mat-cell *matCellDef="let item">{{ item.fechaRegistro | date:'shortDate' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let item" style="white-space: nowrap;">
+            <button mat-stroked-button color="primary" style="margin-right: 8px;"
+                    (click)="activarEdicion(item)" matTooltip="Editar cliente">
+              <mat-icon>settings</mat-icon> Editar
+            </button>
+            <button mat-stroked-button color="warn"
+                    (click)="eliminarCliente(item.idCliente)" matTooltip="Eliminar cliente">
+              <mat-icon>delete</mat-icon> Eliminar
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="columnas.length"
+              style="text-align: center; padding: 2rem; color: gray;">
+            <mat-icon style="display: block; font-size: 36px; height: 36px; width: 36px; margin: 0 auto 8px;">
+              inbox
+            </mat-icon>
+            Sin clientes registrados
+          </td>
+        </tr>
+
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Dialog de edición (reemplaza el modal de Bootstrap) -->
+<ng-template #editDialog>
+  <h2 mat-dialog-title style="display: flex; align-items: center; gap: 8px;">
+    <mat-icon>manage_accounts</mat-icon>
+    Modificar cliente #{{ clienteSeleccionado?.idCliente }}
+  </h2>
+
+  <mat-dialog-content *ngIf="clienteSeleccionado" style="display: flex; flex-direction: column; gap: 4px; padding-top: 8px;">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="clienteSeleccionado.nombre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput [(ngModel)]="clienteSeleccionado.apellido" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput [(ngModel)]="clienteSeleccionado.telefono" />
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary" (click)="guardarCambios()">
+      <mat-icon>save</mat-icon> Guardar
+    </button>
+  </mat-dialog-actions>
+</ng-template>

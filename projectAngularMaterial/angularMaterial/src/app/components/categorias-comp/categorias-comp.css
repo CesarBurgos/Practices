@@ -1,0 +1,101 @@
+:host {
+  display: block;
+}
+
+input[type = text]{
+  margin-right: 8px !important;
+}
+
+.form-section{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.categorias-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.titulo {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Cards */
+mat-card {
+  border-radius: 12px;
+}
+
+mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+  width: 100%;
+}
+
+button[mat-stroked-button] {
+  margin-top: 8px;
+}
+
+/* Tabla */
+.table-section {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-header-row {
+  background: #f5f5f5;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 600;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background: #fafafa;
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  padding: 12px 16px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section,
+  .table-section {
+    width: 100%;
+  }
+}

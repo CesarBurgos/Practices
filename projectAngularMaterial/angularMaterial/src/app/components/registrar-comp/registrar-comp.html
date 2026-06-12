@@ -1,0 +1,118 @@
+<div class="container my-5 d-flex justify-content-center align-items-center">
+
+  <mat-card style="max-width: 500px; width: 100%;">
+
+    <mat-card-header>
+      <mat-card-title>
+        Crear Cuenta 🌊
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        Regístrate para empezar a ordenar los mejores mariscos
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form (ngSubmit)="onRegister()">
+
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+
+              <mat-label>Nombre *</mat-label>
+
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="clienteForm.nombre"
+                name="nombre"
+                placeholder="Ej. Juan"
+                required>
+
+            </mat-form-field>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+
+              <mat-label>Apellido</mat-label>
+
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="clienteForm.apellido"
+                name="apellido"
+                placeholder="Ej. Pérez">
+
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100">
+
+          <mat-label>Teléfono</mat-label>
+
+          <input
+            matInput
+            type="tel"
+            [(ngModel)]="clienteForm.telefono"
+            name="telefono"
+            placeholder="Ej. 4771234567">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+
+          <mat-label>Correo Electrónico *</mat-label>
+
+          <input
+            matInput
+            type="email"
+            [(ngModel)]="clienteForm.correo"
+            name="correo"
+            placeholder="correo@ejemplo.com"
+            required>
+
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="w-100">
+
+          🚀 Registrarme
+
+        </button>
+
+        <div class="text-center mt-3">
+
+          <span>
+            ¿Ya tienes cuenta?
+          </span>
+
+          <button
+            mat-button
+            color="primary"
+            routerLink="/app/home">
+
+            Inicia Sesión aquí
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

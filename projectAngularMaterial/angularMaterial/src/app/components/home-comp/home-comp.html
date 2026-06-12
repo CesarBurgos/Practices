@@ -1,0 +1,79 @@
+<div class="login-container">
+
+  <div class="login-content">
+
+    <!-- Lado izquierdo -->
+    <section class="hero-section">
+
+      <h1 class="hero-title">
+        Los mejores mariscos de la costa directos a tu mesa
+      </h1>
+
+      <p class="hero-description">
+        Disfruta de nuestros ceviches, cócteles de camarón y platillos calientes
+        preparados al momento con la receta secreta de la casa.
+      </p>
+
+      <div class="badges">
+        <span class="badge badge-primary">
+          ⭐ Alta Calidad
+        </span>
+
+        <span class="badge badge-success">
+          🦐 Frescura Garantizada
+        </span>
+      </div>
+
+    </section>
+
+    <!-- Lado derecho -->
+    <section class="form-section">
+
+      <mat-card class="login-card">
+
+        <h2 class="login-title">
+          Ingresar a la Plataforma
+        </h2>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+
+          <input
+            matInput
+            type="email"
+            placeholder="name@example.com"
+            [(ngModel)]="correoLogin">
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="full-width login-button"
+          (click)="onLogin()">
+
+          Entrar
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <p class="register-text">
+          ¿Eres nuevo comensal?
+        </p>
+
+        <div class="register-link">
+          <a
+            mat-stroked-button
+            color="primary"
+            routerLink="/app/registrar">
+
+            Crear una cuenta
+          </a>
+        </div>
+
+      </mat-card>
+
+    </section>
+
+  </div>
+
+</div>
